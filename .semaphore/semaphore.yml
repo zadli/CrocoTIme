@@ -1,0 +1,21 @@
+version: v1.0
+name: Build Check Pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Build check
+    task:
+      jobs:
+        - name: Main job
+          commands:
+            - checkout
+            - chmod +x .semaphore/scripts/build.sh
+            - .semaphore/scripts/build.sh
+      env_vars:
+        - name: TG_CROCO_CHAT_ID
+          value: '-1001303897652'
+      secrets:
+        - name: ZadliCI_Token
+        - name: ZadliCI_Server_IP 
